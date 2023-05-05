@@ -1,6 +1,9 @@
 from flask import Flask, render_template
 
 
+import pandas_datareader.data as pdr
+import yfinance as yf
+
 app = Flask(__name__)
 @app.route("/")
 def index():
@@ -22,7 +25,7 @@ def features():
 
 @app.route("/pricing/")
 def priceing():
-    
+
     return render_template("pricing.jinja.html")
 
 
