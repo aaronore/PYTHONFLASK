@@ -9,8 +9,7 @@ app = Flask(__name__)
 @app.route("/")
 def index():
     stock_data = datasource.get_stock_data(stockid=2303)
-    print(stock_data)
-    return render_template("index.jinja.html")
+    return render_template("index.jinja.html", stockid=2303, stock=stock_data)
 
 
 @app.route("/features/")
