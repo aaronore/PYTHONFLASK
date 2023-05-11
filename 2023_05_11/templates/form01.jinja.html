@@ -12,7 +12,7 @@
 <div class="container-md">
     <form action="" method="post">
         <div class="row">
-            <div class="col-12 col-sm-6">
+            <div class="col-12 col-sm-6"> <!--col-sm-6是應介面調整顯示幾格-->
                 <select class="form-select" aria-label="Default select example" name="stock_name">
                     <option selected>請選擇查詢股票:</option>
                     {% for code,name in rows%}
@@ -37,7 +37,6 @@
                 </select>
             </div>
         </div>
-
         <button type="submit" class="btn btn-primary mt-5">查詢</button>
     </form>
 
@@ -52,31 +51,32 @@
 
                 <thead>
                     <tr>
-                        <th>日期</th>
-                        <th>開盤</th>
-                        <th>最高</th>
-                        <th>最低</th>
-                        <th>收盤1</th>
-                        <th>收盤2</th>
-                        <th>成交量</th>
+                            <th>日期</th>
+                            <th>開盤</th>
+                            <th>最高</th>
+                            <th>最低</th>
+                            <th>收盤1</th>
+                            <th>收盤2</th>
+                            <th>成交量</th>
                     </tr>
-
                 </thead>
+                
                 <tbody>
-                    {% for rows in data %}
-                    <tr>
-                        {% for item in rows%}
-                        {% if loop.first%}
-                        <td>{{ item }}</td>
-                        {% elif loop.last %}
-                        <td>{{ "{:,d}".format(item) }}</td>
-                        {% else %}
-                        <td>{{ "{:.2f}".format(item) }}</td>
+                        {% for rows in data %}
+                        <tr>
+                                {% for item in rows%}
+                                {% if loop.first%}
+                                <td>{{ item }}</td>
+                                
+                                {% elif loop.last %}
+                                <td>{{ "{:,d}".format(item) }}</td>
+                                {% else %}
+                                <td>{{ "{:.2f}".format(item) }}</td>
 
-                        {% endif %}
+                                {% endif %}
+                                {% endfor %}
+                        </tr>
                         {% endfor %}
-                    </tr>
-                    {% endfor %}
                 </tbody>
             </table>
         </div>
@@ -84,4 +84,5 @@
     </div>
     {% endif%}
 </div>
+
 {% endblock %}

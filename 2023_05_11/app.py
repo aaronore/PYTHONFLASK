@@ -30,9 +30,18 @@ def about():
 
 
 @app.route("/form/",methods=['GET', 'POST'])
-def form():
-    if request.method == 'POST':
-        return render_template("form.jinja.html")
 
+def form():  
     rows = datasource.get_stockid()
+    if request.method == 'POST':
+        stock_name = request.form['stock_name'] 
+        stock_id = stock_name[:4]
+        stock_data = datasource.get_stock_data(stockid=stock_id)
+        year = request.form['year']
+        print(rows)
+        #print(stock_name)
+        #print(year)
+        #print(stock_data)
+        return render_template("form.jinja.html", rows=rows, stock_name=stock_name, year=year,data=stock_data)
+    
     return render_template("form.jinja.html", rows=rows)
