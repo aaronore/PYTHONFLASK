@@ -6,8 +6,6 @@ import plotly
 
 
 app = Flask(__name__)
-
-
 @app.route("/", methods=['GET', 'POST'])
 def index():
     rows = datasource.get_stockid()
