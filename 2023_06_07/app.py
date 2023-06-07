@@ -8,11 +8,14 @@ def index():
 
 @app.route("/login",methods=['GET', 'POST'])   
 def login():
+    if request.args.get("error") != "":
+        error = request.args.get("error")
     error = None
     if request.method == 'POST':
         if request.form['email'] == 'robert@gmail.com' and request.form['pwd'] == '12345':
             return redirect(url_for('index'))
         else:
             error = '密碼不正確'
-
+            return redirect(url_for('login', error=error))
+        
     return render_template('login.jinja.html', error=error)
